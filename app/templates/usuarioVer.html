@@ -1,0 +1,11 @@
+{% extends './layout.html' %}
+
+{% block title %} Usuarios {% endblock %}
+
+{% block body %}
+<h1>{{usuario.1}}</h1>
+<p>Password: {{usuario.2}}</p>
+<a class="btn btn-outline-danger d-inline-flex align-items-center" href="{{url_for('usuarios_Ver')}}">
+    Regresar
+</a>
+{% endblock %}

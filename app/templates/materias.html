@@ -1,0 +1,57 @@
+{% extends './layout.html' %}
+
+{% block title %} Profesores {% endblock %}
+
+{% block body %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      {% if "eliminado" in message %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{message}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% else %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{message}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<h1>Informacion de materias</h1>
+<a href="{{url_for('materia_Crear')}}" class="btn btn-primary rounded-pill px-3 my-2"><i class="fa-solid fa-circle-plus"></i> Nueva Materia</a>
+
+
+
+{% if materias %}
+<table class="table table-striped table-hover">
+    <tr>
+      <th class="text-center">Editar</th>
+      <th class="text-center">Ver</th>
+      <th>ID</th>
+      <th>Materia</th>
+      <th>Profesor</th>
+      <th class="text-center">Eliminar</th>
+    </tr>
+    {% for materia in materias %}
+    <tr>
+      <td class="text-center"><a href="{{url_for('editar_materia', id=materia[0])}}"><i class="fa-solid fa-pen"></i></a></td>
+      <td class="text-center"><a href="{{url_for('ver_materia', id=materia[0])}}"><i class="fa-sharp fa-solid fa-eye"></i></a></td>
+      <td>{{ materia[0] }}</td>
+      <td>{{ materia[1] }}</td>
+      <td>{{materia[3]}} ({{ materia[2] }})</td>
+      <td class="text-center"><a href="{{url_for('eliminar_materia', id=materia[0])}}" class="btn-delete"><i class="fa-solid fa-trash-can" style="color: red;"></i></i></a></td>
+    </tr>
+        {% endfor %}
+</table>
+
+
+{% else %}
+<h2>No existen materias...</h2>
+{% endif %}
+
+{% endblock %}

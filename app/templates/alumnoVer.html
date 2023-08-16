@@ -1,0 +1,15 @@
+{% extends './layout.html' %}
+
+{% block title %} Alumnos {% endblock %}
+
+{% block body %}
+<h1>{{alumno.1}}</h1>
+<h1>{{alumno.2}}</h1>
+<p>Matricula: {{alumno.3}}</p>
+<p>Carrera: {{alumno.4}}</p>
+<p>Numero de Tarjeta: {{alumno.5}}</p>
+
+<a class="btn btn-outline-danger d-inline-flex align-items-center" href="{{url_for('alumnos_Ver')}}">
+    Regresar
+</a>
+{% endblock %}

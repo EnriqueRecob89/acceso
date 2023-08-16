@@ -1,0 +1,60 @@
+{% extends './layout.html' %}
+
+{% block title %} Alumnos {% endblock %}
+
+{% block body %}
+<h3>Actualizar alumno</h3>
+    <form action="{{url_for('alumno_actualizar', id=alumno[0])}}" method="POST">
+        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+        <script>
+          function validarLetras(input) {
+              var letters = /^[A-Za-z]+$/;
+              if (!input.value.match(letters)) {
+                  alert('Este campo solo acepta letras');
+                  input.value = input.value.replace(/[^A-Za-z]/g, '');
+              }
+          }
+
+          function validarAlfanumerico(input) {
+            var alphanumeric = /^[0-9a-zA-Z]+$/;
+            if (!input.value.match(alphanumeric)) {
+                alert('Este campo solo acepta números y letras');
+                input.value = input.value.replace(/[^0-9a-zA-Z]/g, '');
+            }
+        }
+
+      </script>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Nombre(s)" name="Nombre" value="{{alumno.1}}"  oninput="validarLetras(this)" required>
+            <label for="floatingInput">Nombre(s)</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Apellido" name="Apellido" value="{{alumno.2}}"  oninput="validarLetras(this)" required>
+            <label for="floatingInput">Apellido</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Matricula" name="Matricula" value="{{alumno.3}}" oninput="validarAlfanumerico(this)" required>
+            <label for="floatingInput">Matricula</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Carrera" name="Carrera" value="{{alumno.4}}"  oninput="validarLetras(this)" required>
+            <label for="floatingInput">Carrera</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="NumTar" name="NumTar" value="{{alumno.5}}" oninput="validarAlfanumerico(this)" required>
+            <label for="floatingInput">NumTar</label>
+          </div>
+       
+        <button type="submit" class="btn btn-success btn-block">
+            Guardar
+        </button>
+        <a class="btn btn-outline-danger d-inline-flex align-items-center" href="{{url_for('alumnos_Ver')}}">
+          Cancelar
+      </a>
+    </form>
+{% endblock %}

@@ -1,0 +1,158 @@
+<table>
+    {%for paises in data.paises%}
+    <li>{{ paises}}</li>
+    {% end for%}
+</table>
+
+
+@app.route('/')
+def index():
+    #return '<p>Piquense la cola!</p>'
+    paises ={
+        'Finlandia'
+        'Mexico'
+        'Monaco'
+        'Inglaterra'
+        
+    }
+
+    data = {
+    'titulo' : 'Nombres de Paises',
+    'encabezado' : 'Paises del mundo',
+    'paises' : paises,
+    'numero_paises': len(paises),
+    }
+    return render_template('index.html', data = data)
+
+
+if __name__ =='__main__':
+    app.run(debug=True, port=8000)
+    #
+    
+    
+    app.config['MYSQL_localhost']= 'localhost'
+app.config['MYSQL_root']= 'root'
+app.config['MYSQL_JOSERo180303**']= 'JOSERo180303**'
+app.config['MYSQL_escolarr1']= 'escolarr1'
+
+
+<input type"hidden" name="csrf_token" value="{{csrf_token()}}">
+
+<input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+
+<select id="Carrera" name="Carrera">
+  <option>---Selecciona Opcion---</option>
+  <option value="#basedatos">Mecatronica Area Automatización</option>
+  <option value="#basedatos">Mantenimiento Area Industrial</option>
+  <option value="#basedatos">Diseño y Moda Ind.Area Producción</option>
+  <option value="#basedatos">T.I. Área Desarrollo de Software Multiplataforma </option>
+  <option value="#basedatos">T.I. Área Entornos Virtuales y Negocios Digitales </option>
+  <option value="#basedatos">T.I. Área Infraestructura de Redes Digitales </option>
+  <option value="#basedatos">Desarrollo de Negocios Área Mercadotecnia  </option>
+  <option value="#basedatos">Admon. Área Capital Humano </option>
+  <option value="#basedatos">Procesos Industriales Área Plasticos</option>
+  <option value="#basedatos">Procesos Industriales Área Automotriz </option>
+  <option value="#basedatos">Procesos Industriales Área Manufactura </option>
+</select>
+
+
+.form-login label{
+    width: 400px;
+    height: 340;
+    background: #78f078;
+    margin: auto;
+    margin-top: 180px;
+    box-shadow: 7px 13px 37px #93ee57;
+    padding: 20px 30px;
+    border-top: 4px solid #1bc23f;
+    color: black;
+   
+
+}
+
+fontawesome buscar 
+
+{% extends './layout.html' %}
+
+{% block title %} Nuevo alumno {% endblock %}
+
+{% block body %}
+<h3>Nuevo alumno</h3>
+    <form action="{{url_for('alumno_Agregar')}}" method="POST" enctype="multipart/from-data">
+        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+        <label>Nombre(s)</label>
+        <input type="text" name="Nombre" placeholder="Nombre(s) del alumno">
+        <label>Archivo:</label>
+        <input type="file" name="Foto" required>
+        <label>Matricula</label>
+        <input type="text" name="Matricula" placeholder="Matricula del alumno">
+        #<input 
+
+       
+        
+        <div class="form-group">
+        <button type="submit" class="btn btn-primary"> Enviar 
+            
+        </button>
+    </div>
+    </form>
+{% endblock %}
+
+
+
+{% block body %}
+<h1>Control de Acceso RFID</h1>
+<h2>Registro de Estudiantes</h2>
+
+<a href="{{url_for('alumno_Crear')}}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">+ Nuevo
+    Alumno</a>
+    <br>
+    <br>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for messages in messages %}
+{{message}}
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+{% if alumnos %}
+
+<table class="table table-striped table-hover">
+    <tr>
+        <th>Editar</th>
+        <th>Ver</th>
+        <th>ID</th>
+        <th>Nombre(s)</th>
+        <th>Apellido Paterno</th>
+        <th>Apellido Materno</th>
+        <th>Carrera</th>
+        <th>Categoria</th>
+        <th>Matricula</th>
+        <th>Tarjeta RFID</th>
+        <th>Eliminar</th>
+    </tr>
+    {% for alumno in alumnos %}
+    <tr>
+        <td><a href="{{url_for('editar_alumno', id=alumno[0])}}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+        <td><a href="{{url_for('ver_alumno', id=alumno[0])}}"><i class="fa-solid fa-eye"></i></a></td>
+        <td>{{ alumno[0]}}</td>
+        <td>{{ alumno[1]}}</td>
+        <td>{{ alumno[2]}}</td>
+        <td>{{ alumno[3]}}</td>
+        <td>{{ alumno[4]}}</td>
+        <td>{{ alumno[5]}}</td>
+        <td>{{ alumno[6]}}</td>
+        <td>{{ alumno[7]}}</td>
+        <td><a href="{{url_for('eliminar_alumno', id=alumno[0])}}"><i class="fa-solid fa-trash-can fa-bounce"
+                    class="fa-solid fa-trash-can" style="color: #ce0e0e;"></i></a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% else %}
+<h2>No existen alumnos...</h2>
+{% endif %}
+
+{% endblock %}

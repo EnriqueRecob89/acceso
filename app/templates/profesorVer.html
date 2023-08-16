@@ -1,0 +1,19 @@
+{% extends './layout.html' %}
+
+{% block title %} Profesor {% endblock %}
+
+{% block body %}
+<h1>{{profesor.1}}</h1>
+<h1>{{profesor.2}}</h1>
+<p>Puesto: {{profesor.3}}</p>
+<p>Area: {{profesor.4}}</p>
+<p>Numero de Tarjeta: {{profesor.5}}</p>
+
+
+<a class="btn btn-outline-danger d-inline-flex align-items-center" href="{{url_for('profesores_Ver')}}">
+    Regresar
+</a>
+
+
+
+{% endblock %}

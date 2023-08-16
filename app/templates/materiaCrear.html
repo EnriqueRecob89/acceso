@@ -1,0 +1,32 @@
+{% extends './layout.html' %}
+
+{% block title %} Nueva materia {% endblock %}
+
+{% block body %}
+<h3>Nueva materia</h3>
+    <form action="{{url_for('materia_Agregar')}}" method="POST">
+        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+        <label>Nombre(s)</label>
+        <input type="text" name="Nombre" placeholder="Nombre de la materia">
+        
+        <label for="Profesor">Nombre del Profesor:</label>
+            <select id="Profesor" name="Profesor">
+            <option selected disabled>- Selecciona un profesor -</option>
+
+            {% if profesores %}
+                {{profesores}}
+                {% for profesor in profesores %}
+                    <option value="{{profesor[0]}}">{{profesor[2]}} ({{profesor[1]}})</option>
+                {% endfor %}
+            {% else %}
+                No hay registros
+            {% endif %}
+
+
+            </select>
+
+        <button type="submit" class="btn btn-success">
+            Guardar
+        </button>
+    </form>
+{% endblock %}
