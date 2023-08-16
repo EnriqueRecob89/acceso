@@ -1,5 +1,4 @@
 import os
-import pdfkit
 import mysql.connector
 import serial
 import time
